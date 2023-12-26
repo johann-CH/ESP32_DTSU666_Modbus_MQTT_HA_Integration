@@ -1,0 +1,85 @@
+...
+
+- sensor:
+  ...
+  
+  # Smart Meter DTSU666 Active Voltage
+  - name: 'Smart Meter DTSU666 Active Voltage'
+    unique_id: dtsu666_active_voltage
+    device_class: voltage
+    unit_of_measurement: 'V'
+    state: >
+      {{
+        ((((states('sensor.smart_meter_dtsu666_voltage_phase_a') | float) +
+        (states('sensor.smart_meter_dtsu666_voltage_phase_b') | float) +
+        (states('sensor.smart_meter_dtsu666_voltage_phase_c') | float)) / 3.00) | round(2))
+      }}
+  
+  # Smart Meter DTSU666 Active Current
+  - name: 'Smart Meter DTSU666 Active Current'
+    unique_id: dtsu666_active_current
+    device_class: current
+    unit_of_measurement: 'A'
+    state: >
+      {{
+        ((((states('sensor.smart_meter_dtsu666_current_phase_a') | float) +
+        (states('sensor.smart_meter_dtsu666_current_phase_b') | float) +
+        (states('sensor.smart_meter_dtsu666_current_phase_c') | float)) / 3.00) | round(2))
+      }}
+  
+  # Smart Meter DTSU666 Energy Purchased
+  - name: 'Smart Meter DTSU666 Energy Purchased'
+    unique_id: dtsu666_energy_purchased
+    device_class: energy
+    unit_of_measurement: 'kWh'
+    state: >
+      {{
+        ((states('sensor.smart_meter_dtsu666_export_energy_total') | float) | round(2))
+      }}
+  
+  # Smart Meter DTSU666 Energy Sold
+  - name: 'Smart Meter DTSU666 Energy Sold'
+    unique_id: dtsu666_energy_sold
+    device_class: energy
+    unit_of_measurement: 'kWh'
+    state: >
+      {{
+        (((states('sensor.smart_meter_dtsu666_import_energy_total') | float) -
+        (states('sensor.smart_meter_dtsu666_export_energy_total') | float)) | round(2))
+      }}
+  
+  # House Active Power Import
+  - name: 'House Active Power Import'
+    unique_id: house_active_power_import
+    device_class: power
+    unit_of_measurement: 'kW'
+    state: >
+      {% if (states('sensor.smart_meter_dtsu666_active_power') | float) < 0 %}
+        {{
+          ((states('sensor.smart_meter_dtsu666_active_power') | float) | abs | round(2))
+        }}
+      {% else %}
+        {{
+          (0.00)
+        }}
+      {% endif %}
+  
+  # House Active Power Export
+  - name: 'House Active Power Export'
+    unique_id: house_active_power_export
+    device_class: power
+    unit_of_measurement: 'kW'
+    state: >
+      {% if (states('sensor.smart_meter_dtsu666_active_power') | float) > 0 %}
+        {{
+          ((states('sensor.smart_meter_dtsu666_active_power') | float) | round(2))
+        }}
+      {% else %}
+        {{
+          (0.00)
+        }}
+      {% endif %}
+  
+  ...
+  
+#EOF

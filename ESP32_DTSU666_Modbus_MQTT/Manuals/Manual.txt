@@ -1,0 +1,39 @@
+Einführung
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+Anforderungen
+
+Hardware Vorussetzungen:
+- ESP32 board with WiFi
+- RS485 Converter
+- Modbus Verbindung RS485 Converter/Smart Meter DTSU666
+
+Software Vorussetzungen:
+- Arduino IDE
+- Libraries
+  - <NTP.h>
+  - <AsyncTCP.h>
+  - <ESPAsyncWebServer.h>
+  - <WebSerial.h> or licensed <WebSerialPro.h>
+  - <ModbusMaster.h>
+  - <MQTT.h>
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+Kommunikation DTSU666
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+Code
+
+Custom definitions in ESP32_DTSU666_Modbus_MQTT.ino:
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+Home Assistant
+
+Für die Integration in den Home Assistant müsse die Definitionen in den folgeden Files in die entsprechenden
+Home Assistant Konfigurations Files intergriert werden:
+ - configuration_dtsu666.aml
+ - mqtt_dtsu666.yaml
+ - templates_dtsu666.yaml

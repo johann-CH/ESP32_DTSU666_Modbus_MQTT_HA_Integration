@@ -1,0 +1,74 @@
+...
+
+# includes
+template: !include templates.yaml
+mqtt: !include mqtt.yaml
+
+# influx db definitions
+influxdb:
+  host: localhost
+  port: 8086
+  database: homeassistant
+  username: homeassistant
+  password: homeassistant
+  max_retries: 3
+  default_measurement: state
+  include:
+    domains:
+      - sensor
+    entity_globs:
+      - sensor.*
+
+# utility meter definitions
+utility_meter:
+  # House External Grid Energy Consumption
+  house_external_grid_energy_consumption_daily:
+    name: 'House External Grid Energy Consumption Daily'
+    unique_id: house_external_grid_energy_consumption_daily
+    source: sensor.smart_meter_dtsu666_export_energy_total
+    cycle: daily
+  
+  house_external_grid_energy_consumption_monthly:
+    name: 'House External Grid Energy Consumption Monthly'
+    unique_id: house_external_grid_energy_consumption_monthly
+    source: sensor.smart_meter_dtsu666_export_energy_total
+    cycle: monthly
+  
+  house_external_grid_energy_consumption_yearly:
+    name: 'House External Grid Energy Consumption Yearly'
+    unique_id: house_external_grid_energy_consumption_yearly
+    source: sensor.smart_meter_dtsu666_export_energy_total
+    cycle: yearly
+  
+  house_external_grid_energy_consumption_total:
+    name: 'House External Grid Energy Consumption Total'
+    unique_id: house_external_grid_energy_consumption_total
+    source: sensor.smart_meter_dtsu666_export_energy_total
+  
+  # House Energy Export External Grid
+  house_energy_export_external_grid_daily:
+    name: 'House Energy Export External Grid Daily'
+    unique_id: house_energy_export_external_grid_daily
+    source: sensor.smart_meter_dtsu666_import_energy_total
+    cycle: daily
+  
+  house_energy_export_external_grid_monthly:
+    name: 'House Energy Export External Grid Monthly'
+    unique_id: house_energy_export_external_grid_monthly
+    source: sensor.smart_meter_dtsu666_import_energy_total
+    cycle: monthly
+  
+  house_energy_export_external_grid_yearly:
+    name: 'House Energy Export External Grid Yearly'
+    unique_id: house_energy_export_external_grid_yearly
+    source: sensor.smart_meter_dtsu666_import_energy_total
+    cycle: yearly
+  
+  house_energy_export_external_grid_total:
+    name: 'House Energy Export External Grid Total'
+    unique_id: house_energy_export_external_grid_total
+    source: sensor.smart_meter_dtsu666_import_energy_total
+  
+...
+
+#EOF
