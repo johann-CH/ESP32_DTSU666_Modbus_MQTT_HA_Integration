@@ -95,7 +95,7 @@ unsigned int wifiReconnectionCounter = 0;
 const unsigned int wifiMaxReconnections = 10;
 
 // NTP definitions
-String actDateTime = "1970-01-01 00:00:00";
+String actDateTime = "1970-01-01 / 00:00:00";
 String actTimestamp = "00:00";
 
 // Modbus definitions
@@ -501,7 +501,7 @@ void loop() {
 
   // handle NTP
   ntp.update();
-  actDateTime = ntp.formattedTime("%Y-%m-%d %H:%M:%S");
+  actDateTime = ntp.formattedTime("%Y-%m-%d / %H:%M:%S");
   actTimestamp = ntp.formattedTime("%H:%M");
   
   #ifdef ESP32_RESTART_TIMESTAMP
