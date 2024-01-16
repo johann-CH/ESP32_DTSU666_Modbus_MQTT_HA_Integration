@@ -1,5 +1,5 @@
 /*
-  ESP32 + RS485 Converter: Smart Meter DTSU666 Prod Home Assistant Integration (RS485(Modbus)/MQTT)
+  ESP32 + RS485 Converter: Smart Meter DTSU666 Prod Home Assistant Integration (RS485/Modbus/MQTT)
 */
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -58,6 +58,7 @@
 #define ESP32_RESTART_TIMESTAMP "06:00"  // ESP32 restart timestamp 06h00
 #define ESP32_RESTART_LOCK_DELAY 60000   // ESP32 restart lock delay 60s [ms]
 #define ESP32_RESTART_DELAY 5000         // ESP32 restart command delay [ms]
+#define ESP32_HALT_DELAY 60000           // ESP32 halt delay 60s [ms]
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 // instantiate chrono objects
@@ -148,6 +149,7 @@ unsigned long mqttKeepAliveDelayedCounter = 0;
 // common definitions
 char msgString[256];  // message char array
 
+bool esp32Halt = 0;
 bool connectionsEstablished = 0;
 
 String dtsu666RegisterBlockName;
@@ -175,7 +177,7 @@ void setup() {
   
   // output infoline
   Serial.println("Smart Meter DTSU666 Prod [Init Modbus + WiFi + MQTT]");
-  Serial.print("> / <");
+  Serial.println();
   
   // initalize modbus slave <ID>
   modbusNode.begin(MODBUS_SLAVE_ID, RS485);
@@ -204,7 +206,7 @@ void setup() {
   Serial.print("\nWiFi <");
   Serial.print(wifiSSID);
   Serial.print("> / <");
-  Serial.println(WiFi.localIP());
+  Serial.print(WiFi.localIP());
   Serial.println("> connected.\n");
   
   // initialize NTP
@@ -480,7 +482,7 @@ void setup() {
   refreshOutputStateChrono.start();
   
   #ifdef DEBUG_OUTPUT
-    Serial.print("> / <");
+    Serial.println();
   #endif
   
   // output dtsu666 + converter states 
@@ -498,7 +500,20 @@ void loop() {
       LEDFlashChrono.restart();
     }
   #endif
-
+  
+  // handle ESP32 Halt
+  if(esp32Halt) {
+    esp32Halt = false;
+    
+    Serial.println("ESP32 Halt...");
+    #ifdef OTA_OUTPUT
+      WebSerialPro.println("ESP32 Halt...");
+    #endif
+    
+    delay(ESP32_HALT_DELAY);
+    esp32Restart();
+  }
+  
   // handle NTP
   ntp.update();
   actDateTime = ntp.formattedTime("%Y-%m-%d / %H:%M:%S");
@@ -612,7 +627,7 @@ void loop() {
           dtsu666DataHandleChrono.restart();  // restart chrono
 
           #ifdef DEBUG_OUTPUT
-            Serial.print("> / <");
+            Serial.println();
           #endif
           #ifdef OTA_OUTPUT
             WebSerialPro.println();
@@ -673,7 +688,7 @@ void loop() {
           dtsu666DataHandleChrono.restart();  // restart chrono
 
           #ifdef DEBUG_OUTPUT
-            Serial.print("> / <");
+            Serial.println();
           #endif
           #ifdef OTA_OUTPUT
             WebSerialPro.println();
@@ -734,7 +749,7 @@ void loop() {
           dtsu666DataHandleChrono.restart();  // restart chrono
 
           #ifdef DEBUG_OUTPUT
-            Serial.print("> / <");
+            Serial.println();
           #endif
           #ifdef OTA_OUTPUT
             WebSerialPro.println();
@@ -795,7 +810,7 @@ void loop() {
           dtsu666DataHandleChrono.restart();  // restart chrono
 
           #ifdef DEBUG_OUTPUT
-            Serial.print("> / <");
+            Serial.println();
           #endif
           #ifdef OTA_OUTPUT
             WebSerialPro.println();
@@ -856,7 +871,7 @@ void loop() {
           dtsu666DataHandleChrono.restart();  // restart chrono
 
           #ifdef DEBUG_OUTPUT
-            Serial.print("> / <");
+            Serial.println();
           #endif
           #ifdef OTA_OUTPUT
             WebSerialPro.println();
@@ -897,8 +912,8 @@ void esp32Restart() {
   mqttClient.disconnect();
   delay(CONNECTION_DELAY);
   WiFi.disconnect();
+  
   delay(ESP32_RESTART_DELAY);
-
   ESP.restart();
 }
 
@@ -911,13 +926,9 @@ void serialOTAReceiver(uint8_t *data, size_t length) {
   }
   
   if(buffer == "Restart") {
-    WebSerialPro.println("ESP32 Restarting...");
-    delay(ESP32_RESTART_DELAY);
     esp32Restart();
   } else if(buffer == "Halt") {
-    WebSerialPro.println("ESP32 Halt...");
-    delay(ESP32_RESTART_DELAY);
-    while(1);
+    esp32Halt = 1;
   } else {
     WebSerialPro.println("Usage: \'Restart\' | \'Halt\'");
   }
@@ -984,7 +995,7 @@ void outputInfoline() {
     sprintf(msgString, "MQTT KeepAlive|Received|Delayed [%lu | %lu | %lu]", mqttKeepAliveCounter, mqttKeepAliveReceivedCounter, mqttKeepAliveDelayedCounter);
     Serial.println(msgString);
     
-    Serial.print("> / <");
+    Serial.println();
   #endif
   
   #ifdef OTA_OUTPUT
@@ -1014,7 +1025,7 @@ void mqttKeepAliveReceiver(String &inputTopic, String &inputPayload) {
     
     #ifdef DEBUG_OUTPUT
       Serial.println("MQTT Message Receiver: " + inputTopic + " - " + inputPayload);
-      Serial.print("> / <");
+      Serial.println();
     #endif
     #ifdef OTA_OUTPUT
       WebSerialPro.println("MQTT Message Receiver: " + inputTopic + " - " + inputPayload);
