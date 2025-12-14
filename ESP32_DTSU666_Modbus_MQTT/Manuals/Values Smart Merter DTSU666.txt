@@ -1,0 +1,71 @@
+Smart Meter DTSU666 Test [MQTT Subscriptions]
+DTSU666ModbusConverterStates
+DTSU666Converter/DTSU666_Modbus_Converter_WiFi_Reconnections
+DTSU666Converter/DTSU666_Modbus_Converter_Modbus_Errors
+DTSU666Converter/DTSU666_Modbus_Converter_Modbus_Errors_0xE0
+DTSU666Converter/DTSU666_Modbus_Converter_Modbus_Errors_0xE1
+DTSU666Converter/DTSU666_Modbus_Converter_Modbus_Errors_0xE2
+DTSU666Converter/DTSU666_Modbus_Converter_Modbus_Errors_0xE3
+DTSU666Converter/DTSU666_Modbus_Converter_MQTT_Reconnections
+DTSU666Converter/DTSU666_Modbus_Converter_MQTT_Keep_Alive
+DTSU666Converter/DTSU666_Modbus_Converter_MQTT_Keep_Alive_Received
+DTSU666Converter/DTSU666_Modbus_Converter_MQTT_Keep_Alive_Delayed
+MQTT
+MQTT/Keep_Alive
+Data0
+DTSU666/Voltage_Phase_A [0/2]
+DTSU666/Voltage_Phase_B [0/3]
+DTSU666/Voltage_Phase_C [0/4]
+DTSU666/Current_Phase_A [0/5]
+DTSU666/Current_Phase_B [0/6]
+DTSU666/Current_Phase_C [0/7]
+DTSU666/Active_Power [0/8]
+DTSU666/Reactive_Power [0/12]
+ata1
+DTSU666/Power_Factor [1/2]
+Data2
+DTSU666/Frequency [2/2]
+Data3
+Data4
+DTSU666/Import_Energy_Total [4/2]
+DTSU666/Export_Energy_Total [4/7]
+
+Data0
+Voltage_Phase_A: 235.80V
+Voltage_Phase_B: 227.90V
+Voltage_Phase_C: 234.20V
+Current_Phase_A: 3.65A
+Current_Phase_B: 11.60A
+Current_Phase_C: 2.50A
+Active_Power: -1.26W
+Active_Power_Phase_A: 0.85W
+Active_Power_Phase_B: -2.64W
+Active_Power_Phase_C: 0.53W
+Reactive_Power: 0.44var
+Reactive_Power_Phase_A: 0.07var
+Reactive_Power_Phase_B: 0.22var
+Reactive_Power_Phase_C: 0.15var
+
+Data1
+Power_Factor: -0.30
+Power_Factor_Phase_A: 0.99
+Power_Factor_Phase_B: -1.00
+Power_Factor_Phase_C: 0.90
+
+Data2
+Frequency: 49.97Hz
+
+Data3
+Total_Active_Power_Demand: 0.00W
+
+Data4
+Import_Energy_Total: 4397.48kWh
+Import_Energy_A: 1549.32kWh
+Import_Energy_B: 1571.02kWh
+Import_Energy_C: 1277.14kWh
+Import_Energy_Net: 4314.52kWh
+Export_Energy_Total: 1006.00kWh
+Export_Energy_A: 363.13kWh
+Export_Energy_B: 178.80kWh
+Export_Energy_C: 464.07kWh
+Export_Energy_Net: 923.01kWh

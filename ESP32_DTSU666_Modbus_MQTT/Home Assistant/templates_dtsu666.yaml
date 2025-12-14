@@ -1,0 +1,28 @@
+# file: /config/templates.yaml (Prod)
+
+- sensor:
+  # Smart Meter DTSU666 Active Voltage
+  - name: 'Smart Meter DTSU666 Active Voltage'
+    unique_id: dtsu666_active_voltage
+    device_class: voltage
+    state_class: measurement
+    unit_of_measurement: 'V'
+    state: >
+      {{
+        ((((states('sensor.smart_meter_dtsu666_voltage_phase_a') | float) +
+        (states('sensor.smart_meter_dtsu666_voltage_phase_b') | float) +
+        (states('sensor.smart_meter_dtsu666_voltage_phase_c') | float)) / 3.00) | round(2))
+      }}
+    
+  # Smart Meter DTSU666 Active Current
+  - name: 'Smart Meter DTSU666 Active Current'
+    unique_id: dtsu666_active_current
+    device_class: current
+    state_class: measurement
+    unit_of_measurement: 'A'
+    state: >
+      {{
+        ((((states('sensor.smart_meter_dtsu666_current_phase_a') | float) +
+        (states('sensor.smart_meter_dtsu666_current_phase_b') | float) +
+        (states('sensor.smart_meter_dtsu666_current_phase_c') | float)) / 3.00) | round(2))
+      }}

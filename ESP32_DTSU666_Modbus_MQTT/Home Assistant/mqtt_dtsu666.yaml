@@ -1,0 +1,223 @@
+# file: /config/mqtt.yaml (Prod)
+
+sensor:
+  # Smart Meter DTSU666 Converter States
+  - name: 'DTSU666 Converter Modbus Error 0xE0 (Invalid Slave ID)'
+    unique_id: dtsu666_converter_modbus_error_0xe0
+    state_topic: 'DTSU666/DTSU666_Modbus_Converter_Error_0xE0'
+    icon: 'mdi:counter'
+    value_template: '{{ value_json.DTSU666_Modbus_Converter_Error_0xE0 }}'
+    
+  - name: 'DTSU666 Converter Modbus Error 0xE1 (Invalid Function)'
+    unique_id: dtsu666_converter_modbus_error_0xe1
+    state_topic: 'DTSU666/DTSU666_Modbus_Converter_Error_0xE1'
+    icon: 'mdi:counter'
+    value_template: '{{ value_json.DTSU666_Modbus_Converter_Error_0xE1 }}'
+    
+  - name: 'DTSU666 Converter Modbus Error 0xE2 (Responce Timeout)'
+    unique_id: dtsu666_converter_modbus_error_0xe2
+    state_topic: 'DTSU666/DTSU666_Modbus_Converter_Error_0xE2'
+    icon: 'mdi:counter'
+    value_template: '{{ value_json.DTSU666_Modbus_Converter_Error_0xE2 }}'
+    
+  - name: 'DTSU666 Converter Modbus Error 0xE3 (Invalid CRC)'
+    unique_id: dtsu666_converter_modbus_error_0xe3
+    state_topic: 'DTSU666/DTSU666_Modbus_Converter_Error_0xE3'
+    icon: 'mdi:counter'
+    value_template: '{{ value_json.DTSU666_Modbus_Converter_Error_0xE3 }}'
+    
+  - name: 'DTSU666 Converter MQTT Keep Alive'
+    unique_id: dtsu666_converter_mqtt_keep_alive
+    state_topic: 'DTSU666/DTSU666_Modbus_Converter_MQTT_Keep_Alive'
+    icon: 'mdi:counter'
+    value_template: '{{ value_json.DTSU666_Modbus_Converter_MQTT_Keep_Alive }}'
+    
+  - name: 'DTSU666 Converter MQTT Keep Alive Received'
+    unique_id: dtsu666_converter_mqtt_keep_alive_received
+    state_topic: 'DTSU666/DTSU666_Modbus_Converter_MQTT_Keep_Alive_Received'
+    icon: 'mdi:counter'
+    value_template: '{{ value_json.DTSU666_Modbus_Converter_MQTT_Keep_Alive_Received }}'
+    
+  - name: 'DTSU666 Converter MQTT Keep Alive Delayed'
+    unique_id: dtsu666_converter_mqtt_keep_alive_delayed
+    state_topic: 'DTSU666/DTSU666_Modbus_Converter_MQTT_Keep_Alive_Delayed'
+    icon: 'mdi:counter'
+    value_template: '{{ value_json.DTSU666_Modbus_Converter_MQTT_Keep_Alive_Delayed }}'
+    
+  # Smart Meter DTSU666 Data
+  # - Register Block System
+  - name: 'Smart Meter DTSU666 Software Revision'
+    unique_id: dtsu666_software_revision
+    state_topic: 'DTSU666/Software_Revision'
+    state_class: measurement
+    value_template: '{{ value_json.Software_Revision }}'
+    
+  - name: 'Smart Meter DTSU666 Programming Code'
+    unique_id: dtsu666_programming_code
+    state_topic: 'DTSU666/Programming_Code'
+    state_class: measurement
+    value_template: '{{ value_json.Programming_Code }}'
+    
+  - name: 'Smart Meter DTSU666 Power Reset'
+    unique_id: dtsu666_power_reset
+    state_topic: 'DTSU666/Power_Reset'
+    state_class: measurement
+    value_template: '{{ value_json.Power_Reset }}'
+    
+  - name: 'Smart Meter DTSU666 Wire Selection'
+    unique_id: dtsu666_wire_selection
+    state_topic: 'DTSU666/Wire_Selection'
+    state_class: measurement
+    value_template: '{{ value_json.Wire_Selection }}'
+    
+  - name: 'Smart Meter DTSU666 Transformer Rate IrAt'
+    unique_id: dtsu666_transformer_rate_irat
+    state_topic: 'DTSU666/Transformer_Rate_IrAt'
+    state_class: measurement
+    value_template: '{{ value_json.Transformer_Rate_IrAt }}'
+    
+  - name: 'Smart Meter DTSU666 Transformer Rate IrUt'
+    unique_id: dtsu666_transformer_rate_irut
+    state_topic: 'DTSU666/Transformer_Rate_IrUt'
+    state_class: measurement
+    value_template: '{{ value_json.Transformer_Rate_IrUt }}'
+    
+  - name: 'Smart Meter DTSU666 Display Rotation Time'
+    unique_id: dtsu666_display_rotation_time
+    state_topic: 'DTSU666/Display_Rotation_Time'
+    state_class: measurement
+    value_template: '{{ value_json.Display_Rotation_Time }}'
+    
+  - name: 'Smart Meter DTSU666 LCD Backlight Time'
+    unique_id: dtsu666_lcd_backlight_time
+    state_topic: 'DTSU666/LCD_Backlight_Time'
+    state_class: measurement
+    value_template: '{{ value_json.LCD_Backlight_Time }}'
+    
+  - name: 'Smart Meter DTSU666 Reserve'
+    unique_id: dtsu666_reserve
+    state_topic: 'DTSU666/Reserve'
+    state_class: measurement
+    value_template: '{{ value_json.Reserve }}'
+
+  - name: 'Smart Meter DTSU666 Protocol'
+    unique_id: dtsu666_protocol
+    state_topic: 'DTSU666/Protocol'
+    state_class: measurement
+    value_template: '{{ value_json.Protocol }}'
+    
+  - name: 'Smart Meter DTSU666 RS485 Baudrate'
+    unique_id: dtsu666_rs485_baudrate
+    state_topic: 'DTSU666/RS485_Baudrate'
+    state_class: measurement
+    value_template: '{{ value_json.RS485_Baudrate }}'
+    
+  - name: 'Smart Meter DTSU666 Modbus Address'
+    unique_id: dtsu666_modbus_address
+    state_topic: 'DTSU666/Modbus_Address'
+    state_class: measurement
+    value_template: '{{ value_json.Modbus_Address }}'
+    
+  # - Register Block Data0
+  - name: 'Smart Meter DTSU666 Voltage Phase A'
+    unique_id: dtsu666_voltage_phase_a
+    state_topic: 'DTSU666/Voltage_Phase_A'
+    device_class: voltage
+    unit_of_measurement: 'V'
+    state_class: measurement
+    value_template: '{{ value_json.Voltage_Phase_A }}'
+    
+  - name: 'Smart Meter DTSU666 Voltage Phase B'
+    unique_id: dtsu666_voltage_phase_b
+    state_topic: 'DTSU666/Voltage_Phase_B'
+    device_class: voltage
+    unit_of_measurement: 'V'
+    state_class: measurement
+    value_template: '{{ value_json.Voltage_Phase_B }}'
+    
+  - name: 'Smart Meter DTSU666 Voltage Phase C'
+    unique_id: dtsu666_voltage_phase_c
+    state_topic: 'DTSU666/Voltage_Phase_C'
+    device_class: voltage
+    unit_of_measurement: 'V'
+    state_class: measurement
+    value_template: '{{ value_json.Voltage_Phase_C }}'
+    
+  - name: 'Smart Meter DTSU666 Current Phase A'
+    unique_id: dtsu666_current_phase_a
+    state_topic: 'DTSU666/Current_Phase_A'
+    device_class: current
+    unit_of_measurement: 'A'
+    state_class: measurement
+    value_template: '{{ value_json.Current_Phase_A }}'
+    
+  - name: 'Smart Meter DTSU666 Current Phase B'
+    unique_id: dtsu666_current_phase_b
+    state_topic: 'DTSU666/Current_Phase_B'
+    device_class: current
+    unit_of_measurement: 'A'
+    state_class: measurement
+    value_template: '{{ value_json.Current_Phase_B }}'
+    
+  - name: 'Smart Meter DTSU666 Current Phase C'
+    unique_id: dtsu666_current_phase_c
+    state_topic: 'DTSU666/Current_Phase_C'
+    device_class: current
+    unit_of_measurement: 'A'
+    state_class: measurement
+    value_template: '{{ value_json.Current_Phase_C }}'
+    
+  - name: 'Smart Meter DTSU666 Active Power'
+    unique_id: dtsu666_active_power
+    state_topic: 'DTSU666/Active_Power'
+    device_class: power
+    unit_of_measurement: 'kW'
+    state_class: measurement
+    force_update: true
+    value_template: '{{ value_json.Active_Power }}'
+    
+  - name: 'Smart Meter DTSU666 Reactive Power'
+    unique_id: dtsu666_reactive_power
+    state_topic: 'DTSU666/Reactive_Power'
+    device_class: reactive_power
+    unit_of_measurement: 'kvar'
+    state_class: measurement
+    value_template: '{{ value_json.Reactive_Power }}'
+    
+  # - Register Block Data1
+  - name: 'Smart Meter DTSU666 Power Factor'
+    unique_id: dtsu666_power_factor
+    state_topic: 'DTSU666/Power_Factor'
+    device_class: power_factor
+    state_class: measurement
+    value_template: '{{ value_json.Power_Factor }}'
+    
+  # - Register Block Data2
+  - name: 'Smart Meter DTSU666 Frequency'
+    unique_id: dtsu666_frequency
+    state_topic: 'DTSU666/Frequency'
+    device_class: frequency
+    unit_of_measurement: 'Hz'
+    state_class: measurement
+    value_template: '{{ value_json.Frequency }}'
+    
+  # - Register Block Data3
+  
+  # - Register Block Data4
+  - name: 'Smart Meter DTSU666 Import Energy Total'
+    unique_id: dtsu666_import_energy_total
+    state_topic: 'DTSU666/Import_Energy_Total'
+    device_class: energy
+    unit_of_measurement: 'kWh'
+    state_class: measurement
+    force_update: true
+    value_template: '{{ value_json.Import_Energy_Total }}'
+    
+  - name: 'Smart Meter DTSU666 Export Energy Total'
+    unique_id: dtsu666_export_energy_total
+    state_topic: 'DTSU666/Export_Energy_Total'
+    device_class: energy
+    unit_of_measurement: 'kWh'
+    state_class: measurement
+    force_update: true
+    value_template: '{{ value_json.Export_Energy_Total }}'
